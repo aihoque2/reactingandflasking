@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import React, { useState, useEffect } from "react";
+import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -19,7 +20,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* Calling a data from setdata for showing */}
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           {data.message}

@@ -11,11 +11,12 @@ api = Api(app)
 
 @app.route("/index")
 def index():
-    return {"state": "Success!", "message": "sugma"}
+    return {"state": "Success!", "message": "ligma"}
 
 @app.route("/form", methods=['POST'])
-def form():
-    pass
+def showForm():
+    form = HelloForm()
+    
 
     
 # Running app
