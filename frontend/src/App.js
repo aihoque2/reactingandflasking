@@ -24,14 +24,19 @@ function App() {
         <p>
           {data.message}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          
-        </a>
+          <BrowserRouter>
+            <ul>
+            <Link className="App-link" to="/">Home</Link> | <Link className="App-link" to="/upload">Upload</Link>
+            </ul>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              git gud @ react, scrub
+            </a>
+          </BrowserRouter>
       </header>
     </div>
   );
