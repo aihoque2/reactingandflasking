@@ -6,7 +6,7 @@ from forms import HelloForm
 #from api.HelloApiHandler import HelloApiHandler
 
 app = Flask(__name__)
-CORS(app) #comment this on deployment
+CORS(app) # comment this on deployment
 api = Api(app)
 
 @app.route("/index")
@@ -15,8 +15,13 @@ def index():
 
 @app.route("/form", methods=['POST'])
 def showForm():
-    form = HelloForm()
-    
+    country = request.json['country']
+    farm = request.json['farm']
+    field = request.json['field']
+    if (country and farm and field):
+        return "SUCCESS! YOU ENTERED {}, {}, {}".format(country, farm, field)
+    else:
+        return "FAIL! ALL FIELDS REQUIRED"
 
     
 # Running app
