@@ -18,7 +18,7 @@ const UploadForm = (props) => {
         }).then(response => response.json()).catch(error => console.log(error))
     } 
     
-    const handeSubmit=(event) => { // submit event listener
+    const handleSubmit=(event) => { // submit event listener
         event.preventDefault();
         let result = sendFields();
         console.log("here's result: ")
@@ -27,21 +27,31 @@ const UploadForm = (props) => {
 
     return(
         <div>
-            <form onSubmit="handleSubmit()">
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="field">
-                    Country
-                    <input type="text" value={country} Onchange={(event)=>setCountry(event.target.value)} required > Enter Country</input>
+                    Country: 
+                    <br></br>
+                    <input type="text" value={country} onChange={(event)=>setCountry(event.target.value)} placeholder="Enter Country" required />
+                    <br></br>
                 </label>
+                <br></br>
 
                 <label htmlFor="farm">
-                    Farm
-                    <input type="text" value={farm} Onchange={(event)=>setFarm(event.target.value)} required > Enter Farm</input>
+                    Farm:
+                    <br></br>  
+                    <input type="text" value={farm} onChange={(event)=>setFarm(event.target.value)} placeholder="Enter Farm" required />
+                    <br></br>
                 </label>
+                <br></br>
 
                 <label htmlFor="field">
-                    Field
-                    <input type="text" value={field} Onchange={(event)=>setField(event.target.value)} required > Enter Field</input>
+                    Field:
+                    <br></br> 
+                    <input type="text" value={field} onChange={(event)=>setField(event.target.value)} placeholder="Enter Field" required />
+                    <br></br>
                 </label>
+                <br></br>
+                <button>Submit</button>
 
             </form>
         </div>

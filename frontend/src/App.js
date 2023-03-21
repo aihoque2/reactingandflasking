@@ -3,10 +3,12 @@ import React, { useState, useEffect } from "react";
 import {BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import UploadForm from './components/UploadForm.js';
+import Home from './components/Home';
 
 function App() {
   const [data, setData] = useState({state: "", message: ""});
 
+  /*
   useEffect(() =>{fetch("/index")
   .then(res => res.json()
   .then(response =>{
@@ -16,7 +18,7 @@ function App() {
   })
   );
   })
-
+*/
 
   return (
     <div className="App">
@@ -30,23 +32,11 @@ function App() {
             <Link className="App-link" to="/">Home</Link> | <Link className="App-link" to="/upload">Upload</Link>
             </ul>
               <Routes>
-                <Route exact path="/">
-                  <React.Fragment>
-                    <a
-                      className="App-link"
-                      href="https://reactjs.org"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      git gud @ react, scrub
-                    </a>
-                  </React.Fragment>
+                <Route exact path="/" element={<Home/>}>
                 </Route>
 
-                <Route exact path="/upload">
-                  <React.Fragment>
-                    <UploadForm/>
-                  </React.Fragment>
+                <Route exact path="/upload" element={<UploadForm/>}>
+
                 </Route>
               
               </Routes>
