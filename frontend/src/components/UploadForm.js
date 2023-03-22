@@ -1,61 +1,76 @@
 import { useState } from "react";
+import {Link } from 'react-router-dom';
 
 const UploadForm = (props) => {
     //send information about file, name, length, etc
     const [country, setCountry] = useState('');
     const [farm, setFarm] = useState('');
     const [field, setField] = useState('');
+    
+    const [message, setMessage] = useState('');
+    const [showForm, setShowForm] = useState(true);
 
-    let submitted = false;
-
-    const sendFields = () =>{
+    const sendFields = async () => {
         //function to fetch API and make 'POST' request
-        return fetch("/form", {
+        const response = await fetch("/form", {
             'method': "POST",
             headers :{ 'Content-Type': 'application/json'},
             //sending data
             body : JSON.stringify({"country": country, "field": field, "farm": farm})
-        }).then(response => response.json()).catch(error => console.log(error))
+        });
+        const data = await response.json();
+
+        return data;
     } 
     
-    const handleSubmit=(event) => { // submit event listener
+    const handleSubmit= async (event) => { // submit event listener
         event.preventDefault();
-        let result = sendFields();
-        console.log("here's result: ")
-        console.log(result)
+        let result = await sendFields();
+        setShowForm(!showForm);
+        setMessage(result.message);
+        console.log("here's message: ");
+        console.log(message);
     }
-
-    return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="field">
-                    Country: 
+    if (showForm){
+        return(
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="field">
+                        Country: 
+                        <br></br>
+                        <input type="text" value={country} onChange={(event)=>setCountry(event.target.value)} placeholder="Enter Country" required />
+                        <br></br>
+                    </label>
                     <br></br>
-                    <input type="text" value={country} onChange={(event)=>setCountry(event.target.value)} placeholder="Enter Country" required />
-                    <br></br>
-                </label>
-                <br></br>
 
-                <label htmlFor="farm">
-                    Farm:
-                    <br></br>  
-                    <input type="text" value={farm} onChange={(event)=>setFarm(event.target.value)} placeholder="Enter Farm" required />
+                    <label htmlFor="farm">
+                        Farm:
+                        <br></br>  
+                        <input type="text" value={farm} onChange={(event)=>setFarm(event.target.value)} placeholder="Enter Farm" required />
+                        <br></br>
+                    </label>
                     <br></br>
-                </label>
-                <br></br>
 
-                <label htmlFor="field">
-                    Field:
-                    <br></br> 
-                    <input type="text" value={field} onChange={(event)=>setField(event.target.value)} placeholder="Enter Field" required />
+                    <label htmlFor="field">
+                        Field:
+                        <br></br> 
+                        <input type="text" value={field} onChange={(event)=>setField(event.target.value)} placeholder="Enter Field" required />
+                        <br></br>
+                    </label>
                     <br></br>
-                </label>
-                <br></br>
-                <button>Submit</button>
+                    <button>Submit</button>
 
-            </form>
-        </div>
-    )
+                </form>
+            </div>
+        )
+    }
+    else{
+        return(
+            <div>
+                <a>{message}</a>
+            </div>
+        )
+    }
 }
 
 export default UploadForm;

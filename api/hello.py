@@ -19,9 +19,9 @@ def showForm():
     farm = request.json['farm']
     field = request.json['field']
     if (country and farm and field):
-        return "SUCCESS! YOU ENTERED {}, {}, {}".format(country, farm, field)
+        return {"status" : "SUCCESS", "message": "YOU ENTERED {}, {}, {}".format(country, farm, field)}
     else:
-        return "FAIL! ALL FIELDS REQUIRED"
+        return {"status": "FAIL", "message": "you did not properly enter the forms"}
 
     
 # Running app
