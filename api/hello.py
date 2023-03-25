@@ -15,10 +15,10 @@ def index():
 
 @app.route("/form", methods=['POST'])
 def showForm():
-    country = request.json['country']
-    farm = request.json['farm']
-    field = request.json['field']
-    if (country and farm and field):
+    email = request.json['email']
+    first_name = request.json['first_name']
+    body = request.json['body']
+    if (email and body):
         return {"status" : "SUCCESS", "message": "YOU ENTERED {}, {}, {}".format(country, farm, field)}
     else:
         return {"status": "FAIL", "message": "you did not properly enter the forms"}

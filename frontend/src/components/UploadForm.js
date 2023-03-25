@@ -54,7 +54,8 @@ const UploadForm = (props) => {
                     <label htmlFor="field">
                         Field:
                         <br></br> 
-                        <input type="text" value={field} onChange={(event)=>setField(event.target.value)} placeholder="Enter Field" required />
+                        <textarea name="paragraph_text" placeholder="...any special message you would like to send?" value={field} onChange={(event)=>setField(event.target.value)}  cols="50" rows="10"></textarea>
+
                         <br></br>
                     </label>
                     <br></br>
