@@ -3,9 +3,9 @@ import {Link } from 'react-router-dom';
 
 const UploadForm = (props) => {
     //send information about file, name, length, etc
-    const [country, setCountry] = useState('');
-    const [farm, setFarm] = useState('');
-    const [field, setField] = useState('');
+    const [email, set_email] = useState('');
+    const [name, set__name] = useState('');
+    const [body, set_body] = useState('');
     
     const [message, setMessage] = useState('');
     const [showForm, setShowForm] = useState(true);
@@ -16,10 +16,9 @@ const UploadForm = (props) => {
             'method': "POST",
             headers :{ 'Content-Type': 'application/json'},
             //sending data
-            body : JSON.stringify({"country": country, "field": field, "farm": farm})
+            body : JSON.stringify({"email": email, "name": name, "body": body})
         });
         const data = await response.json();
-
         return data;
     } 
     
@@ -35,16 +34,16 @@ const UploadForm = (props) => {
         return(
             <div>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="field">
-                        Country: 
+                    <label htmlFor="email">
+                        Email
                         <br></br>
-                        <input type="text" value={country} onChange={(event)=>setCountry(event.target.value)} placeholder="Enter Country" required />
+                        <input type="text" value={email} onChange={(event)=>set_email(event.target.value)} placeholder="Enter Country" required />
                         <br></br>
                     </label>
                     <br></br>
 
-                    <label htmlFor="farm">
-                        Farm:
+                    <label htmlFor="first_name">
+                        first_name:
                         <br></br>  
                         <input type="text" value={farm} onChange={(event)=>setFarm(event.target.value)} placeholder="Enter Farm" required />
                         <br></br>
@@ -60,8 +59,10 @@ const UploadForm = (props) => {
                     </label>
                     <br></br>
                     <button>Submit</button>
-
                 </form>
+                <footer>
+                    <Link reloadDocument to="/">Return Home</Link>
+                </footer>
             </div>
         )
     }
@@ -69,6 +70,9 @@ const UploadForm = (props) => {
         return(
             <div>
                 <a>{message}</a>
+                <footer>
+                <Link reloadDocument to="/">Return Home</Link>
+                </footer>
             </div>
         )
     }

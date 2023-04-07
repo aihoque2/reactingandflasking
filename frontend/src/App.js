@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-    <BrowserRouter forceRefresh={true}>
+    <BrowserRouter>
       <header className="App-header">
         <ul>
         <Link className="App-link" reloadDocument to="/">Home</Link> | <Link className="App-link" reloadDocument to="/upload">Upload</Link>
