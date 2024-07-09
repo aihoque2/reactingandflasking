@@ -3,12 +3,12 @@ import {Link } from 'react-router-dom';
 
 const UploadForm = (props) => {
     //send information about file, name, length, etc
-    const [email, set_email] = useState('');
-    const [name, set__name] = useState('');
-    const [body, set_body] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [body, setBody] = useState('');
     
     const [message, setMessage] = useState('');
-    const [showForm, setShowForm] = useState(true);
+    const [showForm, set_show_form] = useState(true);
 
     const sendFields = async () => {
         //function to fetch API and make 'POST' request
@@ -25,8 +25,8 @@ const UploadForm = (props) => {
     const handleSubmit= async (event) => { // submit event listener
         event.preventDefault();
         let result = await sendFields();
-        setShowForm(!showForm);
-        setMessage(result.message);
+        set_show_form(!showForm);
+        set_message(result.message);
         console.log("here's message: ");
         console.log(message);
     }
