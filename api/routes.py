@@ -22,6 +22,11 @@ def showForm():
     else:
         return {"status": "FAIL", "message": "you did not properly enter the forms"}
 
+@app.route("/download", methods=['GET'])
+def getData():
+    filename = pull_data_from_postgres()
+    return send_from_directory('.', filename)
+
     
 # Running app
 if __name__ == '__main__':
